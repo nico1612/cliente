@@ -6,7 +6,8 @@ async function getUsuarios(){
         let pool = await sql.connect(config);
         let usuarios = await pool.request().query("select * from usuarios"+
         " join ((empleo join empresa on empleo.id_empresa=empresa.id)"+
-        "join descripcion on empleo.id_descripcion_Empleo=descripcion.id_descripcion)"+
+        "join descripcion on"+
+        " empleo.id_descripcion_Empleo=descripcion.id_descripcion)"+
         "on usuario.id_empleo=empleo.id");
         return usuarios.recordsets;
     }
@@ -21,8 +22,8 @@ async function getUsuariosXId(id){
         let usuarios = await pool.request()
             .input('input_parameter', sql.Int, id)
             .query("select"
-            +"usuarios.nombre, usuarios.apellido, empresa.nombre,"
-            +"descripcion.descripcion, descripcion_años_trabajados"
+            +"usuarios.nombre, usuarios.apellido, string_agg(empresa.nombre),"
+            +"string_agg(descripcion.descripcion), strign_agg(descripcion_años_trabajados)"
             +"from (usuarios join"
             +"((empleo join empresa on empleo.id_empresa=empresa.id)"
             +"join descripcion on empleo.id_descripcion_Empleo=descripcion.id_descripcion) "

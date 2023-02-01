@@ -1,5 +1,4 @@
-const config =require("./config");
-const configuracion={
+const config={
     user:"abc123",
     password:"ngonzalez",
     server:"10.20.20.50",

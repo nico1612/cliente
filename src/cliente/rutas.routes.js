@@ -1,10 +1,10 @@
-const express=require("express")
-const router=express.Router()
+const {Router}=require("express")
 const { getUsers, getUserXId } = require("./userController")
+const router = Router()
 
-router.route("/usuarios",getUsers)
+router.get("/usuarios",getUsers)
 
 //obtengo usuarios por id 
-router.route("/usuario/:id",getUserXId)
+router.get("/usuario/:id",getUserXId)
 
 module.exports =router;

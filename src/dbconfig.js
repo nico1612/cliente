@@ -1,9 +1,9 @@
 const config =require("./config");
 const configuracion={
-    user:config.dbUser,
-    password:config.dbPassword,
-    server:config.dbServer,
-    database:config.dbDatabase,
+    user:"abc123",
+    password:"ngonzalez",
+    server:"10.20.20.50",
+    database:"PruebaSQL",
     connectionTimeOut:300000,
         requestTime: 300000,
         pool:{

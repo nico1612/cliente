@@ -1,4 +1,4 @@
-const { getUsuariosXId } = require("./dbUsuarios");
+const dboUsuarios= require("./dbUsuarios");
 
 module.exports.UsersControlers ={
     //obtengo todos los usuarios

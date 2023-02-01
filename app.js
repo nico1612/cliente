@@ -5,6 +5,6 @@ const app = express();
 
 app.use(rutas)
 
-var port =8000;
+var port = config.port || 8000;
 app.listen(port); //Puerto de escucha 
 console.log("usuarios iniciando en el puero:"+port) 

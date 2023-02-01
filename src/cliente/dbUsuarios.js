@@ -1,4 +1,4 @@
-var config = require("../dbconfig.js");//Instanciamos el archivo dbconfig
+var config = require("../dbconfig.js");
 const sql = require('mssql');
 
 async function getUsuarios(){
@@ -27,7 +27,7 @@ async function getUsuariosXId(id){
             +"((empleo join empresa on empleo.id_empresa=empresa.id)"
             +"join descripcion on empleo.id_descripcion_Empleo=descripcion.id_descripcion) "
             +"on usuarios.id=tm_empleo.id_usuario)"+
-            "where usuarios.id = @input_parameter");
+            "where usuarios.id = @input_parameter group by usuarios.nombre,usuarios.apellido");
         return usuarios.recordsets;
     }
     catch(error){

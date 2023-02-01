@@ -1,15 +1,17 @@
+const { dbUser, dbPassword, dbServer, dbDatabase } = require("./config");
+
 const config={
-    user:"abc123",
-    password:"ngonzalez",
+    user:"ngonzalez",
+    password:"abc123",
     server:"10.20.20.50",
     database:"PruebaSQL",
-    connectionTimeOut:300000,
+    /*connectionTimeOut:300000,
         requestTime: 300000,
         pool:{
             max: 300,
             min: 0,
             idleTimeoutMillis:30000,
-        } ,
+        },*/
     options:{
         trustedconnection:false,
         enableArithAbort:true,

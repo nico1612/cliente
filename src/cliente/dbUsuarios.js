@@ -3,12 +3,13 @@ const sql = require('mssql');
 
 async function getUsuarios(){
     try{
+        console.log("hola")
         let pool = await sql.connect(config);
         let usuarios = await pool.request().query("select * from usuarios"+
         " join ((empleo join empresa on empleo.id_empresa=empresa.id)"+
         "join descripcion on"+
         " empleo.id_descripcion_Empleo=descripcion.id_descripcion)"+
-        "on usuario.id_empleo=empleo.id");
+        "on usuarios.id=empleo.id_usuario");
         return usuarios.recordsets;
     }
     catch(error){

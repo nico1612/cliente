@@ -1,6 +1,6 @@
 const dboUsuarios= require("./dbUsuarios");
 
-module.exports.UsersControllers ={
+module.exports={
     //obtengo todos los usuarios
     getUsers:(request,response)=>{
         dboUsuarios.getUsuarios().then(result => {

@@ -5,7 +5,11 @@ async function getUsuarios(){
     try{
         console.log("hola")
         let pool = await sql.connect(config);
-        let usuarios = await pool.request().query("select * from usuarios"+
+        let usuarios = await pool.request().query("select usuarios.nombre,"+
+        "usuarios.apellido, usuarios.edad, empresa.nombre_empresa,"+
+        "descripcion.desripcion,"+
+        "descripcion.años_trabajados"+
+        " from usuarios"+
         " join ((empleo join empresa on empleo.id_empresa=empresa.id)"+
         "join descripcion on"+
         " empleo.id_descripcion_Empleo=descripcion.id_descripcion)"+
@@ -22,15 +26,17 @@ async function getUsuariosXId(id){
         let pool= await sql.connect(config);
         let usuarios = await pool.request()
             .input('input_parameter', sql.Int, id)
-            .query("select"
-            +"usuarios.nombre, usuarios.apellido, string_agg(empresa.nombre),"
-            +"string_agg(descripcion.descripcion), strign_agg(descripcion_años_trabajados)"
-            +"from (usuarios join"
-            +"((empleo join empresa on empleo.id_empresa=empresa.id)"
-            +"join descripcion on empleo.id_descripcion_Empleo=descripcion.id_descripcion) "
-            +"on usuarios.id=tm_empleo.id_usuario)"+
-            "where usuarios.id = @input_parameter group by usuarios.nombre,usuarios.apellido");
-        return usuarios.recordsets;
+            .query("SELECT usuarios.nombre,"+
+            "usuarios.apellido,usuarios.edad,"+
+            "string_agg(empresa.nombre_empresa,','),"+
+            "string_agg(descripcion.desripcion, ','),"+
+            "string_agg(descripcion.años_trabajados , ',')"+
+            "FROM (usuarios join"+
+            "((empleo join empresa ON empleo.id_empresa=empresa.id)"+
+            "JOIN descripcion ON empleo.id_descripcion_Empleo=descripcion.id_descripcion)"+
+            "ON usuarios.id=empleo.id_usuario)"+
+            "WHERE usuarios.id = @input_parameter group by usuarios.nombre,usuarios.apellido,usuarios.edad");
+            return usuarios.recordsets;
     }
     catch(error){
         console.log(error)

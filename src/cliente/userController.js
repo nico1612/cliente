@@ -12,11 +12,15 @@ module.exports={
     getUsersXId:(request,response)=>{
         if(!isNaN(request.params.id) && request.params.id!=0){
             dboUsuarios.getUsuariosXId(request.params.id).then(result => {
-
-                response.json(result[0]);
+                if(result.length){
+                    response.json(result);
+                }
+                else{
+                    response.status(result).json('No se encuentre un usuario con ese id')
+                }
         })}
         else{
-            res.status(404).json('No se encuentra un usuario con ese id')
+            response.status(404).json('No se encuentra un usuario con ese id')
         }
     }
 }

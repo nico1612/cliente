@@ -1,5 +1,5 @@
 var express=require("express");
-var rutas=require("./src/cliente/rutas.routes")
+var rutas=require("./src/routes/rutas.routes.js")
 var config=require("./src/config")
 const app = express();
 

@@ -1,4 +1,4 @@
-const { dbUser, dbPassword, dbServer, dbDatabase } = require("./config");
+const { dbUser, dbPassword, dbServer, dbDatabase } = require("../config");
 
 const config={
     user:"ngonzalez",

@@ -1,4 +1,4 @@
-const dboUsuarios= require("./dbUsuarios");
+const dboUsuarios= require("../cliente/dbUsuarios");
 
 module.exports={
     //obtengo todos los usuarios

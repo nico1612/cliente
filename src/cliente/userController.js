@@ -3,9 +3,13 @@ const dboUsuarios= require("./dbUsuarios");
 module.exports={
     //obtengo todos los usuarios
     getUsers:(request,response)=>{
+        if(!request.params.id){
         dboUsuarios.getUsuarios().then(result => {
             response.json(result[0]);
-        })
+        })}
+        else{
+            response.status(401).json("la url no requiere parametros")
+        }
     },
 
     //obtengo usuarios por id 
